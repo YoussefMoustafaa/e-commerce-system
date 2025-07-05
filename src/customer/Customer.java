@@ -2,12 +2,12 @@ package customer;
 public class Customer {
     private String name;
     private double balance;
-    private String address;
+    private Cart cart;
 
-    public Customer(String name, double balance, String address) {
+    public Customer(String name, double balance) {
         this.name = name;
         this.balance = balance;
-        this.address = address;
+        this.cart = new Cart();
     }
 
     public String getName() {
@@ -26,15 +26,11 @@ public class Customer {
         this.balance = balance;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public boolean canAfford(double amount) {
         return this.balance >= amount;
+    }
+
+    public Cart getCart() {
+        return this.cart;
     }
 }

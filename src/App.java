@@ -43,10 +43,9 @@ public class App {
     }
 
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-        Customer customer = new Customer("Youssef", 5000, "Nasr City");
-        Cart cart = new Cart();
+        Customer customer = new Customer("Youssef", 5000);
 
         Product cheese = new Product("Cheese", 2.5, 15);
         cheese.setExpirableBehavior(new ExpirableProduct(cheese.getName(), LocalDate.of(2025, 1, 23)));
@@ -62,12 +61,11 @@ public class App {
 
         Product scartchCard = new Product("Scratch Card", 11.64, 10);
 
-        
-        cart.addProduct(cheese, 2);
-        cart.addProduct(tv, 1);
-        cart.addProduct(biscuits, 5);
-        cart.addProduct(scartchCard, 2);
+        CustomerController.addToCart(customer, cheese, 2);
+        CustomerController.addToCart(customer, tv, 1);
+        CustomerController.addToCart(customer, biscuits, 5);
+        CustomerController.addToCart(customer, scartchCard, 2);
 
-        checkout(customer, cart);
+        checkout(customer, customer.getCart());
     }
 }

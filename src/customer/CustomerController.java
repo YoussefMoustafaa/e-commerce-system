@@ -1,4 +1,8 @@
 package customer;
+
+import cart.Cart;
+import products.Product;
+
 public class CustomerController {
 
     public static void deductBalance(Customer customer, double amount) {
@@ -10,5 +14,10 @@ public class CustomerController {
         } catch (Exception e) {
             System.err.println(e.getMessage());
         }
+    }
+
+    public static void addToCart(Customer customer, Product product, int quantity) {
+        Cart cart = customer.getCart();
+        cart.addProduct(product, quantity);
     }
 }

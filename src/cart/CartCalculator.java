@@ -5,8 +5,6 @@ import products.Product;
 
 public class CartCalculator {
 
-    // needs handling
-    // also needs handling outofstock and expiration
     public static double calculateSubTotal(Cart cart) {
         double total = 0.0;
         for (Map.Entry<Product, Integer> entry : cart.getProducts().entrySet()) {
