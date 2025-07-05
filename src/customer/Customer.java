@@ -1,3 +1,4 @@
+package customer;
 public class Customer {
     private String name;
     private double balance;
@@ -35,13 +36,5 @@ public class Customer {
 
     public boolean canAfford(double amount) {
         return this.balance >= amount;
-    }
-
-    public void deductBalance(double amount) {
-        if (canAfford(amount)) {
-            this.balance -= amount;
-        } else {
-            throw new IllegalArgumentException("Insufficient balance");
-        }
     }
 }

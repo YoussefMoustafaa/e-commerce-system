@@ -1,4 +1,7 @@
+package cart;
 import java.util.Map;
+
+import products.Product;
 
 public class CartCalculator {
 
@@ -8,9 +11,7 @@ public class CartCalculator {
         double total = 0.0;
         for (Map.Entry<Product, Integer> entry : cart.getProducts().entrySet()) {
             Product product = entry.getKey();
-            if (!product.isOutOfStock() && !product.checkExpiry()) {
-                total += product.getPrice() * product.getQuantity();
-            }
+            total += product.getPrice() * entry.getValue();
         }
         return total;
     }
@@ -19,18 +20,16 @@ public class CartCalculator {
         double totalWeight = 0.0;
         for (Map.Entry<Product, Integer> entry : cart.getProducts().entrySet()) {
             Product product = entry.getKey();
-            if (!product.isOutOfStock() && !product.checkExpiry()) {
-                totalWeight += product.getWeight() * product.getQuantity();
-            }
+            totalWeight += product.getWeight() * entry.getValue();
         }
-        return totalWeight / 1000.0;
+        return totalWeight / 1000.0;    // return in kg
     }
 
     public static double calculateShippingFees(Cart cart) {
         double totalWeight = calculateTotalWeight(cart);
-        if (totalWeight <= 1000.0) {
+        if (totalWeight <= 1.0) {
             return 5.0;     // light items
-        } else if (totalWeight <= 2000.0) {
+        } else if (totalWeight <= 2.0) {
             return 10.0;    // medium items
         } else {
             return 20.0;    // heavy items
